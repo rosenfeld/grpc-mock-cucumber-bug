@@ -2,9 +2,12 @@
 
 source "https://rubygems.org"
 
-gem "grpc", "1.63.0" # "1.71.0" 
+LAST_WORKING_RELEASE = "1.64.3"
+FAILING_RELEASE_SINCE = "1.65.0"
+GRPC_VERSION = ENV["bad"] ? FAILING_RELEASE_SINCE : (ENV["GRPC_VERSION"] || LAST_WORKING_RELEASE)
+gem "grpc", GRPC_VERSION
 
-gem "grpc_mock", git: 'git@github.com:getaroom/grpc_mock.git'# path: "../../grpc_mock"
+gem "grpc_mock", github: 'rosenfeld/grpc_mock', branch: 'interceptors'
 
 gem "cucumber"
 
